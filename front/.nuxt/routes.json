@@ -1,0 +1,32 @@
+[
+  {
+    "name": "acerca-de",
+    "path": "/acerca-de",
+    "component": "C:\\\\Users\\\\sblor\\\\Downloads\\\\tbdplantilla-vue-nuxt-dependabot-npm_and_yarn-ejemplo-mapas-axios-0.21.1\\\\pages\\\\acerca-de.vue",
+    "chunkName": "pages/acerca-de"
+  },
+  {
+    "name": "lista",
+    "path": "/lista",
+    "component": "C:\\\\Users\\\\sblor\\\\Downloads\\\\tbdplantilla-vue-nuxt-dependabot-npm_and_yarn-ejemplo-mapas-axios-0.21.1\\\\pages\\\\lista.vue",
+    "chunkName": "pages/lista"
+  },
+  {
+    "name": "lista-componente",
+    "path": "/lista-componente",
+    "component": "C:\\\\Users\\\\sblor\\\\Downloads\\\\tbdplantilla-vue-nuxt-dependabot-npm_and_yarn-ejemplo-mapas-axios-0.21.1\\\\pages\\\\lista-componente.vue",
+    "chunkName": "pages/lista-componente"
+  },
+  {
+    "name": "nuevo",
+    "path": "/nuevo",
+    "component": "C:\\\\Users\\\\sblor\\\\Downloads\\\\tbdplantilla-vue-nuxt-dependabot-npm_and_yarn-ejemplo-mapas-axios-0.21.1\\\\pages\\\\nuevo.vue",
+    "chunkName": "pages/nuevo"
+  },
+  {
+    "name": "index",
+    "path": "/",
+    "component": "C:\\\\Users\\\\sblor\\\\Downloads\\\\tbdplantilla-vue-nuxt-dependabot-npm_and_yarn-ejemplo-mapas-axios-0.21.1\\\\pages\\\\index.vue",
+    "chunkName": "pages/index"
+  }
+]
