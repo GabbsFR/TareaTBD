@@ -25,7 +25,8 @@ public class DogService {
         this.dogRepository = dogRepository;
     }
 
-    @GetMapping("/dogs")
+    @CrossOrigin(origins = "http://localhost:8081")
+    @GetMapping("/dogs/read/{id}")
     public List<Dog> getAllDogs() {
         System.out.println("getAllDogs()");
         try {
@@ -47,13 +48,15 @@ public class DogService {
          
     }
 
+    @CrossOrigin(origins = "http://localhost:8081")
     @GetMapping("/dogs/count")
     public String countDogs(){
         int total = dogRepository.countDogs();
         return String.format("Tienes %s perros!!", total);
     }
 
-    @PostMapping("/dogs")
+    @CrossOrigin(origins = "http://localhost:8081")
+    @PostMapping("/ranking/createPuntaje")
     @ResponseBody
     public Dog createDog(@RequestBody Dog dog){
         Dog result = dogRepository.createDog(dog);
