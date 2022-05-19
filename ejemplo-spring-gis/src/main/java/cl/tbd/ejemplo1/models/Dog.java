@@ -25,8 +25,8 @@ public class Dog {
 
         this.id=id;
         this.name=name;
-        this.longitude=longitud;
-        this.latitude=latitud;
+        this.longitude=longitude;
+        this.latitude=latitude;
 
     }
 
