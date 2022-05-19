@@ -36,7 +36,7 @@ public class DogRepositoryImp implements DogRepository {
             return null;
         }
     }
-
+    
     @Override
     public Dog createDog(Dog dog) {
         try(Connection conn = sql2o.open()){
@@ -69,8 +69,8 @@ public class DogRepositoryImp implements DogRepository {
         "FROM division_regional_4326 AS t WHERE t.gid = 5;";
         return null;
     }
+    
     @Override
-
     public List<Dog> getNDogs(Dog dog, int N) {
         try(Connection conn = sql2o.open()){
             final String query = "SELECT ST_Distance(geom, 'SRID=4326; :point) as d,id, name FROM perror ORDER BY d limit :limit;";
@@ -87,19 +87,14 @@ public class DogRepositoryImp implements DogRepository {
         }
     }
 
-    @Override
     // Escaner de perros, toma un Id y un radio R para hacer la busqueda
+    @Override
     public List<Dog> dogScanner(Dog dog, int R) {
         try(Connection conn = sql2o.open()){
 
             String point = "POINT("+dog.getLongitude()+" "+dog.getLatitude()+")";
 
-            return conn.createQuery("SELECT *
-                                    FROM perror p
-                                    WHERE ST_DWITHIN(
-	                                    Geography(ST_Transform(p.geom,4326)), 
-	                                    :point ;)'),
-	                                    radius )")
+            return conn.createQuery("SELECT * FROM perror p WHERE ST_DWITHIN(Geography(ST_Transform(p.geom,4326)), :point ;)'), radius )")
                     .addParameter("point", point)
                     .addParameter("radius", R)
                     .executeAndFetch(Dog.class);
@@ -108,4 +103,5 @@ public class DogRepositoryImp implements DogRepository {
             return null;
         }
     }
+
 }
