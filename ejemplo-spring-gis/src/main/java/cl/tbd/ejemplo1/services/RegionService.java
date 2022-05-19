@@ -29,19 +29,5 @@ public class RegionService {
         System.out.println("4");
         return regionRepository.getAllRegions();
     }
-    /*
-    @CrossOrigin(origins = "http://localhost:8081")
-    @GetMapping("/region/count")
-    public String countDogs(){
-        int total = RegionRepository.countDogs();
-        return String.format("Tienes %s perros!!", total);
-    }
 
-    
-    @CrossOrigin(origins = "http://localhost:8081")
-    @GetMapping("/region/read")
-    public List<Region> getAllRegions() {
-        System.out.println("4");
-        return regionRepository.getAllRegions();
-    }*/
 }

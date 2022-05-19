@@ -39,8 +39,11 @@ public class Region {
     public PGgeometry getGeom() {
         return geom;
     }
-
+    
+    public void setGeom(PGgeometry geom) {
+        this.geom = geom;
     }
+    
     //------------------------------------
     public String getNom_reg() {
         return nom_reg;
