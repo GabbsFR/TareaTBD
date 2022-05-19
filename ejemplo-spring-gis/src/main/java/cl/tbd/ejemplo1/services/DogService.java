@@ -67,4 +67,19 @@ public class DogService {
         Dog result = dogRepository.createDog(dog);
         return result;
     }
+
+    @CrossOrigin(origins = "http://localhost:8081")
+    @GetMapping("/dogs/readN")
+    public List<Dog> getNDogs(@RequestBody int id, int N) {
+        System.out.println("getNDogs()");
+        try {
+            List<Dog> dogs = dogRepository.getAllDogs();
+            System.out.println("1");
+            return dogs;
+        } catch (Exception e) {
+            System.out.println("Error :" + e.getMessage());
+            return null;
+        }
+         
+    }
 }
