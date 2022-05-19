@@ -82,4 +82,19 @@ public class DogService {
         }
          
     }
+
+    @CrossOrigin(origins = "http://localhost:8081")
+    @GetMapping("/dogs/readN")
+    public List<Dog> dogScanner(@RequestBody int id, int R) {
+        System.out.println("dogScanner()");
+        try {
+            List<Dog> dogs = dogRepository.getAllDogs();
+            System.out.println("1");
+            return dogs;
+        } catch (Exception e) {
+            System.out.println("Error :" + e.getMessage());
+            return null;
+        }
+         
+    }
 }
