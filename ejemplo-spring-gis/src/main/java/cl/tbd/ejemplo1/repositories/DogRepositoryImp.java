@@ -28,7 +28,7 @@ public class DogRepositoryImp implements DogRepository {
     @Override
     public List<Dog> getAllDogs() {
         try(Connection conn = sql2o.open()){
-            final String query = "SELECT id, name, st_x(st_astext( geom)) AS longitude, st_y(st_astext(geom)) AS latitude, geom FROM perror;";
+            final String query = "SELECT id, name, st_x(st_astext( geom)) AS longitude, st_y(st_astext(geom)) AS latitude FROM perror;";
             return conn.createQuery(query)
                     .executeAndFetch(Dog.class);
         } catch (Exception e) {
