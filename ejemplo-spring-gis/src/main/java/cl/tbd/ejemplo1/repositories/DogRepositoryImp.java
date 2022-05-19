@@ -69,4 +69,20 @@ public class DogRepositoryImp implements DogRepository {
         "FROM division_regional_4326 AS t WHERE t.gid = 5;";
         return null;
     }
+    @Override
+    public List<Dog> getNDogs(Dog dog, int N) {
+        try(Connection conn = sql2o.open()){
+            final String query = "SELECT ST_Distance(geom, 'SRID=4326; :point) as d,id, name FROM perror ORDER BY d limit :limit;";
+
+            String point = "POINT("+dog.getLongitude()+" "+dog.getLatitude()+")";
+
+            return conn.createQuery(query)
+                    .addParameter("point", point)
+                    .addParameter("limit", N)
+                    .executeAndFetch(Dog.class);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
 }
