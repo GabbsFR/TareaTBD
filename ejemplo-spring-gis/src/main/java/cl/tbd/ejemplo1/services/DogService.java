@@ -25,8 +25,13 @@ public class DogService {
         this.dogRepository = dogRepository;
     }
 
+    @GetMapping("/home")
+    public String hello(){
+        return String.format("HOLA");
+    }
+
     @CrossOrigin(origins = "http://localhost:8081")
-    @GetMapping("/dogs/read/{id}")
+    @GetMapping("/dogs/read")
     public List<Dog> getAllDogs() {
         System.out.println("getAllDogs()");
         try {
@@ -34,10 +39,10 @@ public class DogService {
             System.out.println("1");
             for (Dog d : dogs) {
                 System.out.println("ID: " + d.getId());
-                /*PGgeometry geom = d.getLocation();
+                PGgeometry geom = d.getGeom();
                 Geometry geometry = geom.getGeometry();
                 
-                System.out.println("Point: "+ geometry.getValue());*/
+                System.out.println("Point: "+ geometry.getValue());
             }
             System.out.println("2");
             return dogs;
@@ -56,7 +61,7 @@ public class DogService {
     }
 
     @CrossOrigin(origins = "http://localhost:8081")
-    @PostMapping("/ranking/createPuntaje")
+    @PostMapping("/dogs/create")
     @ResponseBody
     public Dog createDog(@RequestBody Dog dog){
         Dog result = dogRepository.createDog(dog);

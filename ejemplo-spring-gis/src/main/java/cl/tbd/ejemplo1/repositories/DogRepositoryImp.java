@@ -20,7 +20,7 @@ public class DogRepositoryImp implements DogRepository {
     public int countDogs() {
         int total = 0;
         try(Connection conn = sql2o.open()){
-            total = conn.createQuery("SELECT COUNT(*) FROM dog").executeScalar(Integer.class);
+            total = conn.createQuery("SELECT COUNT(*) FROM perror").executeScalar(Integer.class);
         }
         return total;
     }
@@ -28,7 +28,7 @@ public class DogRepositoryImp implements DogRepository {
     @Override
     public List<Dog> getAllDogs() {
         try(Connection conn = sql2o.open()){
-            final String query = "SELECT id, name, st_x(st_astext( location)) AS longitude, st_y(st_astext(location)) AS latitude FROM dog;";
+            final String query = "SELECT id, name, st_x(st_astext( geom)) AS longitude, st_y(st_astext(geom)) AS latitude, geom FROM perror;";
             return conn.createQuery(query)
                     .executeAndFetch(Dog.class);
         } catch (Exception e) {
@@ -40,7 +40,7 @@ public class DogRepositoryImp implements DogRepository {
     @Override
     public Dog createDog(Dog dog) {
         try(Connection conn = sql2o.open()){
-            String query = "INSERT INTO DOG (name, location) " +
+            String query = "INSERT INTO perror (name, geom) " +
             "VALUES (:dogName, ST_GeomFromText(:point, 4326))";
 
             String point = "POINT("+dog.getLongitude()+" "+dog.getLatitude()+")";
