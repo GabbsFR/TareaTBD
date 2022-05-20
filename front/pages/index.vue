@@ -1,12 +1,13 @@
 <template>
   <div class="home">
-    <h1>Ejemplo Mapas</h1>
-    <div>{{point}} 
+    <h1 class="top" >Perros de Chile</h1>
+    <!--<div>{{point}} 
       <input type="text" v-model="name" placeholder="nombre" />
       <button type="button" @click="createPoint">Crear</button>
     </div>
-    <div>{{message}}</div>
-    <div id="mapid"></div>
+    <div>{{message}}</div>-->
+    
+    <div class = "mapa" id="mapid"></div>
   </div>
 </template>
 <script>
@@ -63,7 +64,7 @@ export default {
       }
       
       try {
-        let response = await axios.post('http://localhost:3000/dogs' ,newPoint);
+        let response = await axios.post('http://localhost:3000/dogs/read' ,newPoint);
         console.log('response', response.data);
         let id = response.data.id;
         this.message = `${this.name} fue creado con éxito con id: ${id}`;
@@ -79,7 +80,7 @@ export default {
     async getPoints(map){
       try {
         //se llama el servicio 
-        let response = await axios.get('http://localhost:3000/dogs');
+        let response = await axios.get('http://localhost:3000/dogs/read/');
         let dataPoints = response.data;
         //Se itera por los puntos
         dataPoints.forEach(point => {
@@ -127,6 +128,7 @@ export default {
 <style>
 .home{
   display:flex;
+  justify-content: center;
   flex-direction: column;
   align-items: center;
 }
@@ -134,5 +136,18 @@ export default {
 #mapid { 
   height: 400px; 
   width:600px;
+}
+
+.mapa {
+  width: 120px;
+  position:absolute;
+  left:450px;
+  top:150px;
+}
+
+.top {
+  position:absolute;
+  left:650px;
+  top:50px;
 }
 </style>
