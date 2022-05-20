@@ -24,6 +24,7 @@ public class RegionService {
     }
 
     //@CrossOrigin(origins = "http://localhost:8081")
+    @CrossOrigin()
     @GetMapping("/region/read")
     public List<Region> getAllRegions() {
         System.out.println("4");

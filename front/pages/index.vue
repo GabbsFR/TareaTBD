@@ -1,13 +1,32 @@
 <template>
+
   <div class="home">
+    
     <h1 class="top" >Perros de Chile</h1>
     <!--<div>{{point}} 
       <input type="text" v-model="name" placeholder="nombre" />
       <button type="button" @click="createPoint">Crear</button>
     </div>
     <div>{{message}}</div>-->
-    
     <div class = "mapa" id="mapid"></div>
+    <label class="regionLabel">Escoge una región:</label>
+    <select class="regionSelect" id="año">
+      <option>Región de Arica y Parinacota</option>
+      <option>Región de Tarapacá</option>
+      <option>Región de Antofagasta</option>
+      <option>Región de Atacama</option>
+      <option>Región de Coquimbo</option>
+      <option>Región de Valparaíso</option>
+      <option>Región Metropolitana de Santiago</option>
+      <option>Región del Libertador Bernardo O'Higgins</option>
+      <option>Región del Maule</option>
+      <option>Región del Bío-Bío</option>
+      <option>Región de La Araucanía</option>
+      <option>Región de Los Ríos</option>
+      <option>Región de Los Lagos</option>
+      <option>Región de Aysén del Gral.Ibañez del Campo</option>
+      <option>Región de Magallanes y Antártica Chilena</option>
+    </select>
   </div>
 </template>
 <script>
@@ -31,6 +50,7 @@ export default {
       longitude:null,
       name:'',
       points:[], //colección de puntos cargados de la BD
+      regions:[],
       message:'', 
       mymap:null //objeto de mapa(DIV)
     }
@@ -80,9 +100,9 @@ export default {
     async getPoints(map){
       try {
         //se llama el servicio 
-        let response = await axios.get('http://localhost:3000/dogs/read/');
+        let response = await axios.get('http://localhost:3000/dogs/read');
         let dataPoints = response.data;
-        console.log(dataPoints);
+        //console.log(dataPoints);
         //Se itera por los puntos
         dataPoints.forEach(point => {
 
@@ -103,6 +123,24 @@ export default {
        console.log('error', error); 
       }
       
+    },
+    async getRegions(){
+      try {
+        let response = await axios.get('http://localhost:3000/region/read');
+        let regiones = response.data;
+        //console.log(regiones);
+        //Se itera por los puntos
+        regiones.forEach(region => {
+          
+          //Se agrega a la lista
+          this.regions.push(region.nom_reg);
+        });
+
+      } catch (error) {
+       console.log('error', error); 
+      }
+
+
     }
   },
   mounted:function(){
@@ -123,6 +161,22 @@ export default {
 
     //Se agregan los puntos mediante llamada al servicio
     this.getPoints(this.mymap);
+    this.getRegions();
+    console.log(this.regions);
+    let select = document.getElementById("año");
+    /*for(let i = 2000; i <= 2050; i++){
+        let option = document.createElement("option");
+        option.value = i;
+        option.text = i;
+        select.appendChild(option);
+    }*/
+    this.regions.forEach(region => {
+      let option = document.createElement("option");
+      option.value = region;
+      option.text = region;
+      select.appendChild(option)
+    })
+    
   }
 }
 </script>
@@ -150,5 +204,17 @@ export default {
   position:absolute;
   left:650px;
   top:50px;
+}
+
+.regionLabel{
+  position:absolute;
+  left:665px;
+  top:110px;
+}
+
+.regionSelect{
+  position:absolute;
+  left:815px;
+  top:110px;
 }
 </style>
