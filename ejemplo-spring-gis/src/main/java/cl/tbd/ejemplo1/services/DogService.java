@@ -1,7 +1,9 @@
 package cl.tbd.ejemplo1.services;
 
 import cl.tbd.ejemplo1.models.Dog;
+/*import cl.tbd.ejemplo1.models.Region;*/
 import cl.tbd.ejemplo1.repositories.DogRepository;
+/*import cl.tbd.ejemplo1.repositories.RegionRepository;*/
 
 import org.postgis.Geometry;
 import org.postgis.PGgeometry;
@@ -73,7 +75,8 @@ public class DogService {
     public List<Dog> getNDogs(@RequestBody int id, int N) {
         System.out.println("getNDogs()");
         try {
-            List<Dog> dogs = dogRepository.getNDogs();
+            Dog dog = dogRepository.getDogById(id);
+            List<Dog> dogs = dogRepository.getNDogs(dog, N);
             System.out.println("1");
             return dogs;
         } catch (Exception e) {
@@ -87,7 +90,8 @@ public class DogService {
     public List<Dog> dogScanner(@RequestBody int id, int R) {
         System.out.println("dogScanner()");
         try {
-            List<Dog> dogs = dogRepository.dogScanner();
+            Dog dog = dogRepository.getDogById(id);
+            List<Dog> dogs = dogRepository.dogScanner(dog, R);
             System.out.println("1");
             return dogs;
         } catch (Exception e) {
@@ -101,7 +105,7 @@ public class DogService {
     public Dog getDogById(@RequestBody int id) {
         System.out.println("getDogById()");
         try {
-            Dog dogs = dogRepository.getDogById();
+            Dog dogs = dogRepository.getDogById(id);
             System.out.println("1");
             return dogs;
         } catch (Exception e) {
