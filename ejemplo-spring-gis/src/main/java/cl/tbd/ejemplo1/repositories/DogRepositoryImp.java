@@ -1,8 +1,11 @@
 package cl.tbd.ejemplo1.repositories;
 
 import cl.tbd.ejemplo1.models.Dog;
+/*import cl.tbd.ejemplo1.models.Region;*/
 
 import org.postgis.Point;
+/*import org.postgis.PGgeometry;
+import org.postgis.Geometry;*/
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;
@@ -116,4 +119,16 @@ public class DogRepositoryImp implements DogRepository {
         }
     }
 
+    /*@Override
+    public List<Dog> dogByRegion(Region region) {
+        try(Connection conn = sql2o.open()){
+
+            String aux = region.getGeom();
+            PGgeometry geom;
+            Geometry geometry = geom.geomFromString(aux);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }*/
 }

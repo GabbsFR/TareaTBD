@@ -1,7 +1,9 @@
 package cl.tbd.ejemplo1.services;
 
 import cl.tbd.ejemplo1.models.Dog;
+/*import cl.tbd.ejemplo1.models.Region;*/
 import cl.tbd.ejemplo1.repositories.DogRepository;
+/*import cl.tbd.ejemplo1.repositories.RegionRepository;*/
 
 import org.postgis.Geometry;
 import org.postgis.PGgeometry;
@@ -80,8 +82,7 @@ public class DogService {
         } catch (Exception e) {
             System.out.println("Error :" + e.getMessage());
             return null;
-        }
-         
+        }     
     }
 
     @CrossOrigin(origins = "http://localhost:8081")
