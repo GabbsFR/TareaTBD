@@ -10,7 +10,7 @@ public class Dog {
     private String name;
     private double longitude;
     private double latitude;
-    //private PGgeometry geom;
+    private String geom;
 
     //Constructor
     /**

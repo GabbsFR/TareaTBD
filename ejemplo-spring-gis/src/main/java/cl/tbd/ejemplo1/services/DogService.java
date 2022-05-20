@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -71,12 +73,11 @@ public class DogService {
     }
     
     @CrossOrigin(origins = "http://localhost:8081")
-    @GetMapping("/dogs/readN")
-    public List<Dog> getNDogs(@RequestBody Dog id, int N) {
+    @GetMapping("/dogs/{id}/readN")
+    public List<Dog> getNDogs(@PathVariable int id, @RequestParam(value = "N") int N )  {
         System.out.println("getNDogs()");
         try {
-            Dog dog = dogRepository.getDogById(id.getId());
-            List<Dog> dogs = dogRepository.getNDogs(dog, N);
+            List<Dog> dogs = dogRepository.getNDogs(id, N);
             System.out.println("1");
             return dogs;
         } catch (Exception e) {
@@ -86,12 +87,11 @@ public class DogService {
     }
 
     @CrossOrigin(origins = "http://localhost:8081")
-    @GetMapping("/dogs/readR")
-    public List<Dog> dogScanner(@RequestBody Dog id, int R) {
+    @GetMapping("/dogs/{id}/readR")
+    public List<Dog> dogScanner(@PathVariable int id, @RequestParam(value = "R") int R) {
         System.out.println("dogScanner()");
         try {
-            Dog dog = dogRepository.getDogById(id.getId());
-            List<Dog> dogs = dogRepository.dogScanner(dog, R);
+            List<Dog> dogs = dogRepository.dogScanner(id, R);
             System.out.println("1");
             return dogs;
         } catch (Exception e) {
