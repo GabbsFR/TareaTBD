@@ -30,7 +30,7 @@ public class DogService {
         return String.format("HOLA");
     }
 
-    @CrossOrigin(origins = "http://localhost:8081")
+    @CrossOrigin()
     @GetMapping("/dogs/read")
     public List<Dog> getAllDogs() {
         System.out.println("getAllDogs()");
