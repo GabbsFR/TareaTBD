@@ -7,6 +7,8 @@ public interface DogRepository {
     public List<Dog> getAllDogs();
     public Dog createDog(Dog dog);
     public String getJson();
+    public List<Dog> getDogById(int id_Dog);
     public List<Dog> getNDogs(Dog dog, int N);
     public List<Dog> dogScanner(Dog dog, int R);
+    
 }

@@ -60,7 +60,7 @@ public class DogRepositoryImp implements DogRepository {
     }
 
     @Override
-    public Voluntario getDogById(int id_Dog) {
+    public Dog getDogById(int id_Dog) {
         try (Connection conn = sql2o.open()) {
             return conn.createQuery(
                     "SELECT * FROM perror WHERE id_Dog = :v_id_Dog")

@@ -73,14 +73,13 @@ public class DogService {
     public List<Dog> getNDogs(@RequestBody int id, int N) {
         System.out.println("getNDogs()");
         try {
-            List<Dog> dogs = dogRepository.getAllDogs();
+            List<Dog> dogs = dogRepository.getNDogs();
             System.out.println("1");
             return dogs;
         } catch (Exception e) {
             System.out.println("Error :" + e.getMessage());
             return null;
-        }
-         
+        }     
     }
 
     @CrossOrigin(origins = "http://localhost:8081")
@@ -88,7 +87,7 @@ public class DogService {
     public List<Dog> dogScanner(@RequestBody int id, int R) {
         System.out.println("dogScanner()");
         try {
-            List<Dog> dogs = dogRepository.getAllDogs();
+            List<Dog> dogs = dogRepository.dogScanner();
             System.out.println("1");
             return dogs;
         } catch (Exception e) {
@@ -96,4 +95,20 @@ public class DogService {
             return null;
         } 
     }
+
+    @CrossOrigin(origins = "http://localhost:8081")
+    @GetMapping("/dogs/readR")
+    public Dog getDogById(@RequestBody int id) {
+        System.out.println("getDogById()");
+        try {
+            Dog dogs = dogRepository.getDogById();
+            System.out.println("1");
+            return dogs;
+        } catch (Exception e) {
+            System.out.println("Error :" + e.getMessage());
+            return null;
+        } 
+    }
+
+    
 }
