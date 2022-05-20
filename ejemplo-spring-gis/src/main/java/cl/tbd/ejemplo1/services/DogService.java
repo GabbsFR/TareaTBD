@@ -30,13 +30,13 @@ public class DogService {
         return String.format("HOLA");
     }
 
-    @CrossOrigin(origins = "http://localhost:8081")
+    @CrossOrigin()
     @GetMapping("/dogs/read")
     public List<Dog> getAllDogs() {
         System.out.println("getAllDogs()");
         try {
             List<Dog> dogs = dogRepository.getAllDogs();
-            System.out.println("1");
+            //System.out.println("1");
             /*for (Dog d : dogs) {
                 System.out.println("ID: " + d.getId());
                 PGgeometry geom = d.getGeom();
@@ -44,7 +44,7 @@ public class DogService {
                 
                 System.out.println("Point: "+ geometry.getValue());
             }*/
-            System.out.println("2");
+            //System.out.println("2");
             return dogs;
         } catch (Exception e) {
             System.out.println("Error :" + e.getMessage());

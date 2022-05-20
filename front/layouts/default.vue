@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
-    <header>
-      <nav><!-- Enlaces de navegación-->
+    <!--<header>
+      <nav> Enlaces de navegación
         <ul>
           <li>
             <a href="/lista">Lista</a>
@@ -17,10 +17,10 @@
           </li>
         </ul>
       </nav>
-    </header>
+    </header>-->
       <Nuxt /><!-- Contenidos de las páginas-->
     <footer><!-- contenido del footer -->
-      Ejemplo TBD
+      Laboratorio TBD
     </footer>
   </div>
 </template>
@@ -79,5 +79,25 @@ html {
 .button--grey:hover {
   color: #fff;
   background-color: #35495e;
+}
+
+footer {
+  min-height: 70px;
+  background-color: #191919;
+  background-image: -moz-linear-gradient(top, #191919, #000000);
+  background-image: -o-linear-gradient(top, #191919, #000000);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #191919), color-stop(1, #000000));
+  background-image: -webkit-linear-gradient(#191919, #000000);
+  background-image: linear-gradient(top, #191919, #000000);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#191919', endColorStr='#000000');
+  border-top: 1px solid rgba(50, 50, 50, 0.3);
+  width: 100%;
+  /*position: relative;
+  clear: both;             
+  margin-top: 0px;            ELIMINADO
+  padding-top: 0px;
+  overflow: visible;*/
+  position: fixed;
+  bottom: 0;              /* NUEVO */
 }
 </style>
