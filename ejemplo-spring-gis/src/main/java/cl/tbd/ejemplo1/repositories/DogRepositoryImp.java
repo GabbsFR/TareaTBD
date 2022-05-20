@@ -66,7 +66,7 @@ public class DogRepositoryImp implements DogRepository {
     public Dog getDogById(int id_Dog) {
         try (Connection conn = sql2o.open()) {
             return conn.createQuery(
-                    "SELECT * FROM perror WHERE id = :v_id_Dog")
+                    "SELECT id, name, st_x(st_astext( geom)) AS longitude, st_y(st_astext(geom)) AS latitude FROM perror WHERE id = :v_id_Dog")
                     .addParameter("v_id_Dog", id_Dog).executeAndFetchFirst(Dog.class);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -88,10 +88,10 @@ public class DogRepositoryImp implements DogRepository {
     @Override
     public List<Dog> getNDogs(int id, int N) {
         try(Connection conn = sql2o.open()){
-            String queryDog = "SELECT * FROM perror WHERE id = " + id;
+            String queryDog = "SELECT id, name, st_x(st_astext( geom)) AS longitude, st_y(st_astext(geom)) AS latitude FROM perror WHERE id = " + id;
             Dog dog = conn.createQuery(queryDog)
             .executeAndFetchFirst(Dog.class);
-            final String query = "SELECT ST_Distance(geom, 'SRID=4326; :point) as d,id, name FROM perror ORDER BY d limit :limit;";
+            final String query = "SELECT ST_Distance(geom,'SRID=4326;:point) as d,id, name FROM perror ORDER BY d limit :limit;";
 
             String point = "POINT("+dog.getLongitude()+" "+dog.getLatitude()+")";
 
@@ -115,7 +115,7 @@ public class DogRepositoryImp implements DogRepository {
             .executeAndFetchFirst(Dog.class);
             String point = "POINT("+dog.getLongitude()+" "+dog.getLatitude()+")";
 
-            return conn.createQuery("SELECT * FROM perror p WHERE ST_DWITHIN(Geography(ST_Transform(p.geom,4326)), :point ;)'), :radius )")
+            return conn.createQuery("SELECT id, name, st_x(st_astext( geom)) AS longitude, st_y(st_astext(geom)) AS latitude FROM perror p WHERE ST_DWITHIN(Geography(ST_Transform(p.geom,4326)), :point ;)'), :radius )")
                     .addParameter("point", point)
                     .addParameter("radius", R)
                     .executeAndFetch(Dog.class);

@@ -102,10 +102,10 @@ public class DogService {
     
     @CrossOrigin(origins = "http://localhost:8081")
     @GetMapping("/dogs/readId")
-    public Dog getDogById(@RequestBody Dog id) {
+    public Dog getDogById(@RequestParam(value = "R") int id) {
         System.out.println("getDogById()");
         try {
-            Dog dogs = dogRepository.getDogById(id.getId());
+            Dog dogs = dogRepository.getDogById(id);
             System.out.println("1");
             return dogs;
         } catch (Exception e) {
