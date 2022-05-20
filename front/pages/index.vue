@@ -82,6 +82,7 @@ export default {
         //se llama el servicio 
         let response = await axios.get('http://localhost:3000/dogs/read/');
         let dataPoints = response.data;
+        console.log(dataPoints);
         //Se itera por los puntos
         dataPoints.forEach(point => {
 
