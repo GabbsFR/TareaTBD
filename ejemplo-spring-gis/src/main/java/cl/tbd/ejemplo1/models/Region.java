@@ -15,11 +15,11 @@ public class Region {
     private int pobl2010;
     private double shape_leng;
     private double shape_area;
-    private PGgeometry geom;
+    private String geom;
     
     // Constructor
     
-    public Region(int gid, String nom_reg, String nom_prov, String cod_com, String nom_com, double cod_regl, double superficie, int poblac02, int pobl2010, double shape_leng, double shape_area, PGgeometry geom){
+    public Region(int gid, String nom_reg, String nom_prov, String cod_com, String nom_com, double cod_regl, double superficie, int poblac02, int pobl2010, double shape_leng, double shape_area, String geom){
         this.gid=gid;
         this.nom_reg=nom_reg;
         this.nom_prov=nom_prov;
@@ -36,11 +36,11 @@ public class Region {
     }
     
 
-    public PGgeometry getGeom() {
+    public String getGeom() {
         return geom;
     }
     
-    public void setGeom(PGgeometry geom) {
+    public void setGeom(String geom) {
         this.geom = geom;
     }
     
