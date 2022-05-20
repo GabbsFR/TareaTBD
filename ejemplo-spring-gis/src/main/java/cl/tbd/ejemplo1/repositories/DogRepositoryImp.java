@@ -60,6 +60,18 @@ public class DogRepositoryImp implements DogRepository {
     }
 
     @Override
+    public Voluntario getDogById(int id_Dog) {
+        try (Connection conn = sql2o.open()) {
+            return conn.createQuery(
+                    "SELECT * FROM perror WHERE id_Dog = :v_id_Dog")
+                    .addParameter("v_id_Dog", id_Dog).executeAndFetchFirst(Dog.class);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+    @Override
     public String getJson() {
         // TODO Auto-generated method stub
         final String query = "SELECT json_build_object("+
